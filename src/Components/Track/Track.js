@@ -1,34 +1,40 @@
 import React from 'react';
 import './Track.css';
 
-const Track = (track, onAdd, onRemove, isRemoval) => {
-
-  const addTrack = track => {
-    //onAdd(track);
-    console.log(track);
-    console.log(onAdd);
+class Track extends React.Component {
+  constructor(props) {
+    super(props);
+    this.addTrack = this.addTrack.bind(this);
+    this.removeTrack = this.removeTrack.bind(this);
+    this.renderAction = this.renderAction.bind(this);
   }
 
-  const removeTrack = track => {
-    //onRemove(track);
-    console.log(track);
-    console.log(onRemove);
+  addTrack() {
+    this.props.onAdd(this.props.track);
   }
 
-  const renderAction = () => {
-      return isRemoval ? <button className="Track-action" onClick={addTrack}>+</button> 
-      : <button className="Track-action" onClick={removeTrack}>-</button>
+  removeTrack() {
+    this.props.onRemove(this.props.track);
   }
 
-  return (
-    <div className="Track">
-      <div className="Track-information">
-        <h3>{track.searchResults.name}</h3>
-        <p>{track.artist} | {track.album}</p>
+  renderAction() {    
+    return this.props.isRemoval === 'false' 
+    ? <button className="Track-action" onClick={this.addTrack} >+</button> 
+    : <button className="Track-action" onClick={this.removeTrack} >-</button>
+        
+  }
+
+  render() {
+    return (
+      <div className="Track">
+        <div className="Track-information" key>
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
+        </div>
+        {this.renderAction()}
       </div>
-        {renderAction}
-    </div>
-  )
+    )
+  }  
 }
 
 export default Track;
