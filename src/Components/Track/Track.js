@@ -33,7 +33,9 @@ class Track extends React.Component {
       document.querySelector('.preview').innerHTML = 'No preview available';
       return;
     }
-    //Incomplete
+    const preview = new Audio(this.props.track.preview);
+    preview.play();
+    //Needs a pause option
   }
 
   render() {
