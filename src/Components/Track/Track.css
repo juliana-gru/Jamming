@@ -35,3 +35,13 @@
   font-weight: 300;
   color: rgba(256, 256, 256, 0.8);
 }
+
+span.preview {
+  font-size: .83rem;
+  font-weight: 300;
+  color: #6c41ec
+}
+
+span.preview:hover {
+  text-decoration: underline;
+}
