@@ -4,6 +4,7 @@ import './Track.css';
 const Track = props => {
   const [preview, setPreview] = useState();
   const [isPlaying, setIsPlaying] = useState(false);
+  const controlPreview = useRef();
 
 	const addTrack = () => props.onAdd(props.track);
 	const removeTrack = () => props.onRemove(props.track);
@@ -21,7 +22,6 @@ const Track = props => {
 	};
 
 	const handlePreview = () => {
-    console.log('1');
     if (!props.track.preview) {
 			document.querySelector('.preview').innerHTML = 'No preview available';
 			return;
@@ -30,14 +30,15 @@ const Track = props => {
     if (isPlaying) {
       preview.pause();
       setIsPlaying(false);
+      controlPreview.current.innerText = 'Preview';
     } else {
       setPreview(new Audio(props.track.preview));
       setIsPlaying(true);      
+      controlPreview.current.innerText = 'Click to pause';
     }		
   };
   
   useEffect(() => {
-    console.log('2');
     if (!preview) return;
     preview.play();
   }, [preview]);
@@ -49,7 +50,7 @@ const Track = props => {
 				<p>
 					{props.track.artist} | {props.track.album}
 				</p>
-				<span className='preview' onClick={handlePreview}>
+				<span ref={controlPreview} className='preview' onClick={handlePreview}>
 					Preview
 					<audio src={props.track.preview}></audio>
 				</span>
