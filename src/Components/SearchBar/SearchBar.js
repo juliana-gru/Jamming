@@ -23,9 +23,7 @@ class SearchBar extends React.Component {
   }
 
   handleKeyDown(event) {
-    if (event.keyCode !== 13) {
-      return;
-    }
+    if (event.keyCode !== 13) return;    
     this.props.onSearch(this.state.searchTerm);
   }
 
