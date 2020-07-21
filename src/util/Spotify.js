@@ -1,6 +1,6 @@
 const clientID = '76dbd79e03ee41608177aef38c46774c';
-//const redirectURI = encodeURIComponent('http://localhost:3000/');
-const redirectURI = encodeURIComponent('http://jammingwithspotify.surge.sh');
+const redirectURI = encodeURIComponent('http://localhost:3000/');
+//const redirectURI = encodeURIComponent('http://jammingwithspotify.surge.sh');
 
 let accessToken;
 
@@ -33,7 +33,7 @@ const Spotify = {
     })
     .then(response => response.json())
     .then(jsonResponse => {
-      if (jsonResponse) {
+      if (jsonResponse.tracks) {
         return jsonResponse.tracks.items.map( track => ({          
             id: track.id,
             name: track.name,

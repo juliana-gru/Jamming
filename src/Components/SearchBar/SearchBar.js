@@ -3,7 +3,7 @@ import './SearchBar.css';
 
 const SearchBar = props => {
   const [searchTerm, setSearchTerm] = useState('');
-
+  
   const search = () => props.onSearch(searchTerm);
   const handleTermChange = e => setSearchTerm(e.target.value);  
 
