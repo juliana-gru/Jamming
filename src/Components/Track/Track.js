@@ -1,11 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 import './Track.css';
 
 const Track = props => {
-  const [preview, setPreview] = useState();
-  const [isPlaying, setIsPlaying] = useState(false);
-  const controlPreview = useRef();
-
 	const addTrack = () => props.onAdd(props.track);
 	const removeTrack = () => props.onRemove(props.track);
 
@@ -20,28 +16,21 @@ const Track = props => {
 			</button>
 		);
 	};
-
-	const handlePreview = () => {
-    if (!props.track.preview) {
-			document.querySelector('.preview').innerHTML = 'No preview available';
+	
+	const handlePreview = e => {	
+		if (!props.track.preview) {
+			e.target.children[1].innerText = 'No preview available';
 			return;
-    }
-
-    if (isPlaying) {
-      preview.pause();
-      setIsPlaying(false);
-      controlPreview.current.innerText = 'Preview';
-    } else {
-      setPreview(new Audio(props.track.preview));
-      setIsPlaying(true);      
-      controlPreview.current.innerText = 'Click to pause';
-    }		
-  };
-  
-  useEffect(() => {
-    if (!preview) return;
-    preview.play();
-  }, [preview]);
+		}
+		if (e.target.parentNode.firstChild.paused) {
+			e.target.parentNode.firstChild.play();
+			e.target.innerText = 'Click to pause';
+		}	
+		else {
+			e.target.parentNode.firstChild.pause();
+			e.target.innerText = 'Preview'
+		}					
+	}
 
 	return (
 		<div className='Track'>
@@ -50,10 +39,10 @@ const Track = props => {
 				<p>
 					{props.track.artist} | {props.track.album}
 				</p>
-				<span ref={controlPreview} className='preview' onClick={handlePreview}>
-					Preview
-					<audio src={props.track.preview}></audio>
-				</span>
+				<div className='preview' onClick={handlePreview}>					
+					<audio src={props.track.preview}>Audio not supported</audio>
+					<span>Preview</span>
+				</div>
 			</div>
 			{renderAction()}
 		</div>

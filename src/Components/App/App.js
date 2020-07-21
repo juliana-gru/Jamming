@@ -36,9 +36,17 @@ const App = () => {
   }
 
   const search = term => {
+    // Stop preview audios which are playing when search is refreshed
+    if (!document.querySelectorAll('audio')) return;
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.pause();
+    });
+    
+    //Executes search
     Spotify.search(term).then(tracks => {
       setSearchResults(tracks);
-    });    
+    });
+    
   }
   
   return (
