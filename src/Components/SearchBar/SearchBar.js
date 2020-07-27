@@ -1,10 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './SearchBar.css';
 
 const SearchBar = props => {
   const [searchTerm, setSearchTerm] = useState('');
-  
-  const search = () => props.onSearch(searchTerm);
+  const inputRef = useRef();
+
+  const search = () => {
+    localStorage.setItem('searchTerm', inputRef.current.value)
+    props.onSearch(searchTerm);
+
+  }
   const handleTermChange = e => setSearchTerm(e.target.value);  
 
   const handleKeyDown = e => {
@@ -12,9 +17,14 @@ const SearchBar = props => {
     search();
   }
   
+  useEffect(() => {
+    inputRef.current.value = localStorage.getItem('searchTerm');
+    if (inputRef.current.value) props.onSearch(inputRef.current.value);
+  }, [])  
+
   return (
     <div className="SearchBar">
-      <input placeholder="Enter A Song, Album, or Artist" 
+      <input ref={inputRef} placeholder="Enter A Song, Album, or Artist" 
         onChange={handleTermChange} onKeyDown={handleKeyDown}/>
       <button className="SearchButton" onClick={search}>SEARCH</button>
     </div>

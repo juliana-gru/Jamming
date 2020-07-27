@@ -19,7 +19,7 @@ const Track = props => {
 	
 	const handlePreview = e => {	
 		if (!props.track.preview) {
-			e.target.children[1].innerText = 'No preview available';
+			e.target.innerText = 'No preview available';
 			return;
 		}
 		if (e.target.parentNode.firstChild.paused) {
