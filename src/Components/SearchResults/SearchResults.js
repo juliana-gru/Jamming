@@ -3,12 +3,16 @@ import './SearchResults.css';
 
 import TrackList from '../TrackList/TrackList';
 
-const SearchResults = props => {
+const SearchResults = ({ searchResults, onAdd }) => {
   
   return (
     <div className="SearchResults">
       <h2>Results</h2>
-      <TrackList tracks={props.searchResults} onAdd={props.onAdd} isRemoval={false} />
+      <TrackList 
+        tracks={searchResults} 
+        onAdd={onAdd} 
+        isRemoval={false} 
+      />
     </div>
   )   
 }

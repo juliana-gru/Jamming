@@ -1,12 +1,12 @@
 import React from 'react';
 import './Track.css';
 
-const Track = props => {
-	const addTrack = () => props.onAdd(props.track);
-	const removeTrack = () => props.onRemove(props.track);
+const Track = ({ track, onAdd, onRemove, isRemoval }) => {
+	const addTrack = () => onAdd(track);
+	const removeTrack = () => onRemove(track);
 
 	const renderAction = () => {
-		return props.isRemoval ? (
+		return isRemoval ? (
 			<button className='Track-action' onClick={removeTrack}>
 				-
 			</button>
@@ -18,11 +18,12 @@ const Track = props => {
 	};
 	
 	const handlePreview = e => {	
-		if (!props.track.preview) {
+		if (!track.preview) {
 			e.target.innerText = 'No preview available';
 			return;
 		}
 		if (e.target.parentNode.firstChild.paused) {
+			console.log(e.target.parentNode);
 			e.target.parentNode.firstChild.play();
 			e.target.innerText = 'Click to pause';
 		}	
@@ -35,12 +36,12 @@ const Track = props => {
 	return (
 		<div className='Track'>
 			<div className='Track-information' key>
-				<h3>{props.track.name}</h3>
+				<h3>{track.name}</h3>
 				<p>
-					{props.track.artist} | {props.track.album}
+					{track.artist} | {track.album}
 				</p>
 				<div className='preview' onClick={handlePreview}>					
-					<audio src={props.track.preview}>Audio not supported</audio>
+					<audio src={track.preview}>Audio not supported</audio>
 					<span>Preview</span>
 				</div>
 			</div>

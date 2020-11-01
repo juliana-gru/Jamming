@@ -1,10 +1,10 @@
 const clientID = '76dbd79e03ee41608177aef38c46774c';
-//const redirectURI = encodeURIComponent('http://localhost:3000/');
-const redirectURI = encodeURIComponent('http://jammingwithspotify.surge.sh');
+const redirectURI = encodeURIComponent('http://localhost:3000/');
+//const redirectURI = encodeURIComponent('http://jammingwithspotify.surge.sh');
 
 let accessToken;
 
-const Spotify = {
+const SpotifyAPI = {
   getAccessToken() {
     if (accessToken) {
       return accessToken;      
@@ -27,7 +27,7 @@ const Spotify = {
   },
 
   search(term) {    
-    const accessToken = Spotify.getAccessToken();
+    const accessToken = SpotifyAPI.getAccessToken();
     return fetch(`https://api.spotify.com/v1/search?type=track&q=${encodeURIComponent(term)}`, {
       headers: {Authorization: `Bearer ${accessToken}`}
     })
@@ -52,18 +52,18 @@ const Spotify = {
     if (!playlistName || !trackURIs.length) {
       return;
     }
-    const accessToken = Spotify.getAccessToken();
+    const accessToken = SpotifyAPI.getAccessToken();
    
     const headers = { Authorization: `Bearer ${accessToken}`};
     let userID;
     
-    //Get USER ID
+    // #1 Get USER ID
     return fetch('https://api.spotify.com/v1/me', {headers: headers})
     .then(response => response.json())
     .then(jsonResponse => {
       userID = jsonResponse.id;
-      console.log(userID);
-      //Creates Playlist
+      
+    // #2 Creates Playlist
       return fetch(`https://api.spotify.com/v1/users/${userID}/playlists`, {
         headers: { 
           Authorization: `Bearer ${accessToken}`,
@@ -74,8 +74,8 @@ const Spotify = {
       }).then(response => response.json())
       .then(jsonResponse => {
         const playlistID = jsonResponse.id
-        console.log(playlistID)
-        //Add tracks to the created playlist
+        
+    // #3 Add tracks to the created playlist
         return fetch(`https://api.spotify.com/v1/users/${userID}/playlists/${playlistID}/tracks`, {
           headers: { 
             Authorization: `Bearer ${accessToken}`,
@@ -89,4 +89,4 @@ const Spotify = {
   }
 };
 
-export default Spotify;
+export default SpotifyAPI;

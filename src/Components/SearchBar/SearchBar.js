@@ -1,15 +1,15 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './SearchBar.css';
 
-const SearchBar = props => {
+const SearchBar = ({onSearch}) => {
   const [searchTerm, setSearchTerm] = useState('');
   const inputRef = useRef();
 
   const search = () => {
     localStorage.setItem('searchTerm', inputRef.current.value)
-    props.onSearch(searchTerm);
-
+    onSearch(searchTerm);
   }
+
   const handleTermChange = e => setSearchTerm(e.target.value);  
 
   const handleKeyDown = e => {
@@ -19,7 +19,7 @@ const SearchBar = props => {
   
   useEffect(() => {
     inputRef.current.value = localStorage.getItem('searchTerm');
-    if (inputRef.current.value) props.onSearch(inputRef.current.value);
+    if (inputRef.current.value) onSearch(inputRef.current.value);
   }, [])  
 
   return (
