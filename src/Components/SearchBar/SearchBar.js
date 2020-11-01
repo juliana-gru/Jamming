@@ -20,6 +20,7 @@ const SearchBar = ({onSearch}) => {
   useEffect(() => {
     inputRef.current.value = localStorage.getItem('searchTerm');
     if (inputRef.current.value) onSearch(inputRef.current.value);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])  
 
   return (
