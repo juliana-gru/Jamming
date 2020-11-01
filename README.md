@@ -13,6 +13,6 @@ User stories:
 - Lets you save your playlist
 
 Additional features I've added:
--Play previews of songs
--Executes a search when pressing 'Enter' on the search bar
+- Play previews of songs (if available)
+- Executes a search when pressing 'Enter' on the search bar
 
