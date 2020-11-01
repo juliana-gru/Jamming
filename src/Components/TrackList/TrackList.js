@@ -3,13 +3,13 @@ import './TrackList.css';
 
 import Track from '../Track/Track';
 
-const TrackList = props => {
+const TrackList = ({ tracks, onAdd, onRemove, isRemoval }) => {
   
   return (
     <div className="TrackList">
-      {props.tracks && props.tracks.map(track => {
-        return <Track track={track} key={track.id} onAdd={props.onAdd} 
-        onRemove={props.onRemove} isRemoval={props.isRemoval} />
+      {tracks && tracks.map(track => {
+        return <Track track={track} key={track.id} onAdd={onAdd} 
+        onRemove={onRemove} isRemoval={isRemoval} />
       })}        
     </div>
   )  

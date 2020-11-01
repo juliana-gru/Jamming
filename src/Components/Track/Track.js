@@ -22,13 +22,15 @@ const Track = ({ track, onAdd, onRemove, isRemoval }) => {
 			e.target.innerText = 'No preview available';
 			return;
 		}
-		if (e.target.parentNode.firstChild.paused) {
-			console.log(e.target.parentNode);
-			e.target.parentNode.firstChild.play();
+		
+		const audioElement = e.target.parentNode.querySelector("audio");
+
+		if (audioElement.paused) {			
+			audioElement.play();
 			e.target.innerText = 'Click to pause';
 		}	
 		else {
-			e.target.parentNode.firstChild.pause();
+			audioElement.pause();
 			e.target.innerText = 'Preview'
 		}					
 	}
