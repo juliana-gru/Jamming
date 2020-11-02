@@ -7,7 +7,7 @@ Web app that allows users to search the Spotify library, create a custom playlis
 This project is part of Codecademy's course 'Create a front-end app with React' and was originally created with ReactJS using class components. 
 I've refactored the code to function components using React Hooks.
 
-Deployed with Netlify to: jammmingwithspotify.netlify.app
+Deployed with Netlify to: https://jammmingwithspotify.netlify.app
 
 ### User stories:
 - Can link their spotify account (have to to gain access to the app's functionalities)
