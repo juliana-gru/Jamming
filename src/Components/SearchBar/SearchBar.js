@@ -6,7 +6,7 @@ const SearchBar = ({onSearch}) => {
   const inputRef = useRef();
 
   const search = () => {
-    localStorage.setItem('searchTerm', inputRef.current.value)
+    localStorage.setItem('searchTerm', inputRef.current.value);
     onSearch(searchTerm);
   }
 
@@ -18,8 +18,15 @@ const SearchBar = ({onSearch}) => {
   }
   
   useEffect(() => {
-    inputRef.current.value = localStorage.getItem('searchTerm');
-    if (inputRef.current.value) onSearch(inputRef.current.value);
+    //Get saved search term from local storage
+    const firstSearchTerm = localStorage.getItem('searchTerm');
+    
+    //"Insert" saved search term on the input
+    inputRef.current.value = firstSearchTerm;
+    
+    // Set search term and call a search with the term
+    setSearchTerm(firstSearchTerm);
+    if (firstSearchTerm) onSearch(firstSearchTerm);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])  
 
