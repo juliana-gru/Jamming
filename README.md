@@ -1,3 +1,4 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8cec6385-ec1a-4899-bdf5-ae492291e987/deploy-status)](https://app.netlify.com/sites/jammmingwithspotify/deploys)
 # Jamming
 
 ### About it:
@@ -6,7 +7,7 @@ Web app that allows users to search the Spotify library, create a custom playlis
 This project is part of Codecademy's course 'Create a front-end app with React' and was originally created with ReactJS using class components. 
 I've refactored the code to function components using React Hooks.
 
-Deployed with Surge to: http://jammingwithspotify.surge.sh
+Deployed with Netlify to: https://jammmingwithspotify.netlify.app
 
 ### User stories:
 - Can link their spotify account (have to to gain access to the app's functionalities)
