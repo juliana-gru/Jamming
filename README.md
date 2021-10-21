@@ -2,7 +2,7 @@
 # Jamming
 
 ### About it:
-Web app that allows users to search the Spotify library, create a custom playlist, then save it to their Spotify account.
+Web app that allows user to grant the app access to some resources in their Spotify account for the purposes of searching for songs, creating a custom playlist, then saving it to user's Spotify account. Access is granted through OAuth 2.0.
 
 This project is part of Codecademy's course 'Create a front-end app with React' and was originally created with ReactJS using class components. 
 I've refactored the code to function components using React Hooks.
@@ -17,8 +17,8 @@ Deployed with Netlify to: https://jammmingwithspotify.netlify.app
 - Can save the playlist to their spotify account.
 
 ### Additional features I've added:
-- User can play previews of songs (if available)
+- User can play previews of songs (if made available by the Spotify API)
 - User can execute a search when pressing 'Enter' on the search bar
-- Saves your first search term to local storage so user doesn't have to repeat the search when being redirected from the Spotify authorization page.
+- Saves your first search term to local storage so user doesn't have to repeat the search when being redirected from the Spotify auth page.
 - Added meta tags to improve SEO
 
